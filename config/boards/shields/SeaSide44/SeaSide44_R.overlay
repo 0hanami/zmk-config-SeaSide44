@@ -28,10 +28,10 @@
         input-processors = <&zip_temp_layer 4 600>;
 
         /* スクロールレイヤー: レイヤー5でスクロールモードに切り替え */
-        /* (以前の scroll-layers = <5> 相当) */
         scroll {
             layers = <5>;
-            input-processors = <&zip_xy_to_scroll_mapper>;
+            /* スクロール変換 + 感度調整 (1/4に減速: multiplier=1, divisor=4) */
+            input-processors = <&zip_xy_to_scroll_mapper>, <&zip_xy_scaler 1 4>;
         };
     };
 };
