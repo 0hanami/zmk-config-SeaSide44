@@ -77,8 +77,8 @@
         /* 軸入れ替え: センサーのX→画面のY、センサーのY→画面のX */
         zephyr,axis-x = <INPUT_REL_Y>;
         zephyr,axis-y = <INPUT_REL_X>;
-        /* CPI 設定 (以前の CONFIG_PMW3610_CPI=600 相当) */
-        res-cpi = <600>;
+        /* CPI 設定 */
+        res-cpi = <2000>;
         /* 反転設定: Y軸のみ反転 */
         invert-x;
         /* スマートアルゴリズム (以前の CONFIG_PMW3610_SMART_ALGORITHM=y 相当) */
