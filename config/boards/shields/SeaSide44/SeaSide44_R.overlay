@@ -79,9 +79,8 @@
         zephyr,axis-y = <INPUT_REL_X>;
         /* CPI 設定 (以前の CONFIG_PMW3610_CPI=600 相当) */
         res-cpi = <600>;
-        /* 反転設定 */
+        /* 反転設定: Y軸のみ反転 */
         invert-x;
-        invert-y;
         /* スマートアルゴリズム (以前の CONFIG_PMW3610_SMART_ALGORITHM=y 相当) */
         smart-mode;
     };
