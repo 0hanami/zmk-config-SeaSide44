@@ -27,11 +27,11 @@
         /* オートマウスレイヤー: レイヤー4を600ms有効化 */
         input-processors = <&zip_temp_layer 4 600>;
 
-        /* スクロールレイヤー: レイヤー5でスクロールモードに切り替え */
+        /* スクロールレイヤー: レイヤー6でスクロールモードに切り替え */
         scroll {
-            layers = <5>;
-            /* スクロール変換 + 感度調整 (1/4に減速: multiplier=1, divisor=4) */
-            input-processors = <&zip_xy_to_scroll_mapper>, <&zip_xy_scaler 1 4>;
+            layers = <6>;
+            /* スクロール変換 + 感度調整 (1/16に減速: multiplier=1, divisor=16) */
+            input-processors = <&zip_xy_to_scroll_mapper>, <&zip_xy_scaler 1 16>;
         };
     };
 };
