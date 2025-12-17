@@ -30,8 +30,8 @@
         /* スクロールレイヤー: レイヤー6でスクロールモードに切り替え */
         scroll {
             layers = <6>;
-            /* スクロール変換 + 感度調整 (1/256に減速: 1/16 × 1/16) */
-            input-processors = <&zip_xy_scaler 1 16>, <&zip_xy_scaler 1 16>, <&zip_xy_to_scroll_mapper>;
+            /* スクロール変換 + 感度調整 (1/128に減速: 1/16 × 1/8) */
+            input-processors = <&zip_xy_scaler 1 16>, <&zip_xy_scaler 1 8>, <&zip_xy_to_scroll_mapper>;
         };
     };
 };
