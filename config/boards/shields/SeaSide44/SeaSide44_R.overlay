@@ -30,8 +30,8 @@
         /* スクロールレイヤー: レイヤー6でスクロールモードに切り替え */
         scroll {
             layers = <6>;
-            /* スクロール変換 + 感度調整 (1/32に減速: 1/16 × 1/2) */
-            input-processors = <&zip_xy_scaler 1 16>, <&zip_xy_scaler 1 2>, <&zip_xy_to_scroll_mapper>;
+            /* スクロール変換 + 感度調整 (1/256に減速: 1/16 × 1/16) */
+            input-processors = <&zip_xy_scaler 1 16>, <&zip_xy_scaler 1 16>, <&zip_xy_to_scroll_mapper>;
         };
     };
 };
@@ -78,7 +78,7 @@
         zephyr,axis-x = <INPUT_REL_Y>;
         zephyr,axis-y = <INPUT_REL_X>;
         /* CPI 設定 */
-        res-cpi = <1700>;
+        res-cpi = <1500>;
         /* 反転設定: Y軸のみ反転 */
         invert-x;
         /* スマートアルゴリズム (以前の CONFIG_PMW3610_SMART_ALGORITHM=y 相当) */
