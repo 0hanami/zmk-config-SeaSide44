@@ -1,4 +1,11 @@
 #include "SeaSide44.dtsi"
+#include <zephyr/dt-bindings/input/input-event-codes.h>
+#include <input/processors.dtsi>
+
+/* キー入力中のオートマウスレイヤー誤爆防止 (200ms) */
+&zip_temp_layer {
+    require-prior-idle-ms = <200>;
+};
 
 &default_transform {
     col-offset = <6>;
@@ -17,12 +24,20 @@
             ;
 };
 
-/* Trackball のリスナー */ 
+/* Trackball のリスナー */
 / {
     trackball_listener {
         compatible = "zmk,input-listener";
         device = <&trackball>;
+        /* オートマウスレイヤー: レイヤー4を600ms有効化 */
+        input-processors = <&zip_temp_layer 4 600>;
 
+        /* スクロールレイヤー: レイヤー6でスクロールモードに切り替え */
+        scroll {
+            layers = <6>;
+            /* スクロール変換 + 感度調整 (1/128に減速: 1/16 × 1/8) */
+            input-processors = <&zip_xy_scaler 1 16>, <&zip_xy_scaler 1 8>, <&zip_xy_to_scroll_mapper>;
+        };
     };
 };
 
@@ -63,9 +78,16 @@
         compatible = "pixart,pmw3610";
         reg = <0>;
         spi-max-frequency = <2000000>;
-        irq-gpios = <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-        // automouse-layer = <4>; //ここをコメントアウトするとオートマウスレイヤーがオフになる
-        scroll-layers = <5>;
+        motion-gpios = <&gpio0 2 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+        /* 軸入れ替え: センサーのX→画面のY、センサーのY→画面のX */
+        zephyr,axis-x = <INPUT_REL_Y>;
+        zephyr,axis-y = <INPUT_REL_X>;
+        /* CPI 設定 */
+        res-cpi = <1500>;
+        /* 反転設定: Y軸のみ反転 */
+        invert-x;
+        /* スマートアルゴリズム (以前の CONFIG_PMW3610_SMART_ALGORITHM=y 相当) */
+        smart-mode;
     };
 };
 
