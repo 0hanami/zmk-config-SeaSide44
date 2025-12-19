@@ -2,6 +2,11 @@
 #include <zephyr/dt-bindings/input/input-event-codes.h>
 #include <input/processors.dtsi>
 
+/* キー入力中のオートマウスレイヤー誤爆防止 (200ms) */
+&zip_temp_layer {
+    require-prior-idle-ms = <200>;
+};
+
 &default_transform {
     col-offset = <6>;
 };
