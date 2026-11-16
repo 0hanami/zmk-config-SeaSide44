@@ -10,3 +10,10 @@
             , <&xiao_d 0 GPIO_ACTIVE_HIGH>
             ;
 };
+
+// 左手側のキーが二重に反応する（チャタリング）対策（2026-11-16）
+// 既定は押し・離しとも 5ms。離したときの跳ね返りを拾わないよう、離しを長めに待つ
+&kscan0 {
+        debounce-press-ms = <8>;
+        debounce-release-ms = <20>;
+};

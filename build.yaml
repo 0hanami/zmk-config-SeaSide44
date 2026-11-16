@@ -18,10 +18,10 @@
 #
 ---
 include:
- - board: xiao_ble
+ - board: xiao_ble//zmk
    shield: SeaSide44_R rgbled_adapter
    snippet: studio-rpc-usb-uart
- - board: xiao_ble
+ - board: xiao_ble//zmk
    shield: SeaSide44_L rgbled_adapter
- - board: xiao_ble
+ - board: xiao_ble//zmk
    shield: settings_reset
